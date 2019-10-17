@@ -1,33 +1,42 @@
-\documentclass[12pt]{article}
+\documentclass[
+  12pt,
+  openright,
+  twoside,
+  a4paper,
+  english,
+  brazil
+]{abntex2}
 
-\author{Bernardo Ferrari Mendonça}
-\title{Rascunho de Proposta}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
 
-\maketitle
+\titulo{Implementação de um front end para IR LLVM}
+\tituloestrangeiro{Implementing a LLVM IR front end}
 
-\begin{abstract}
-Motivações e outras coisas sobre meu trabalho de conclusão de curso.
-\end{abstract}
+\autor{Bernardo Ferrari Mendonça}
+\local{Brasil}
+\data{2019}
+\orientador{Rafael de Santiago}
+\coorientador{Evandro}
+\instituicao{
+  Universidade Federal de Santa Catarina
+  \par
+  Departamento de Informática e Estatística
+  \par
+  Ciência da Computação
+}
+
+\tipotrabalho{Trabalho de Conclusão de Curso de Graduação}
+
+\preambulo{Proposta de monografia submetida ao Programa
+de Graduação em Ciência da Computação
+para a obtenção do Grau de Bacharel.}
 
 \begin{document}
+\pretextual{}
+\imprimircapa{}
+\imprimirfolhaderosto{}
 
-\section{Titulo do TCC:}
-
-Penso que o Titulo provisório do TCC seria:
-
-\begin{center}
-Implementação de um \textit{frontend} para \textit{LLVM}.
-\end{center}
-
-Descrição: Implementar um tradutor de uma linguagem c-like escrito na linguagem de programação rust para a linguagem de código intermediário LLVM\@.
-
-Motivações:
-\begin{itemize}
-  \item Aprender a fazer o design de uma linguagem, o que significa extendê-la?;
-  \item Aprender geração de código intermediário de alto desempenho utilizando LLVM\@;
-  \item Aprender sobre o conceito de máquinas abstratas e \textit{operational semantics};
-  \item Talvez preparar o projeto para receber uma extensão quântica;
-  \item Pensar sobre as diferenças entre a máquina abstrata, clássica e a máquina abstrata quântica;
-\end{itemize}
+\includepdf{folha-de-aprovacao.pdf}
 
 \end{document}
