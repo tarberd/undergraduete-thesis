@@ -9,6 +9,7 @@
 
 \usepackage{indentfirst}
 \usepackage{pdfpages}
+\usepackage[alf]{abntex2cite}
 
 \titulo{Implementação de um front end para IR LLVM}
 \tituloestrangeiro{Implementing a LLVM IR front end}
@@ -37,6 +38,32 @@ para a obtenção do Grau de Bacharel.}
 \imprimircapa{}
 \imprimirfolhaderosto{}
 
-\includepdf{folha-de-aprovacao.pdf}
+\begin{folhadeaprovacao}
+  \includepdf{folha-de-aprovacao.pdf}
+\end{folhadeaprovacao}
+
+\begin{resumo}
+Meu resumo.
+
+\vspace{\onelineskip}
+\noindent
+\textbf{Palavras-chave}: minhas\@. palavras\@. chave.
+
+\end{resumo}
+
+\begin{KeepFromToc}
+  \tableofcontents
+\end{KeepFromToc}
+
+\textual{}
+
+\chapter{Introdução}\label{cap:introdução}
+
+Esta vai ser minha introdução\cite{dijkstra1968}!
+Este é outro paragrafo!
+
+\postextual{}
+
+\bibliography{bibliography.bib}
 
 \end{document}
