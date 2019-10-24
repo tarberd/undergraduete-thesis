@@ -7,6 +7,7 @@
   brazil
 ]{abntex2}
 
+\usepackage[T1]{fontenc}
 \usepackage{indentfirst}
 \usepackage{pdfpages}
 \usepackage[alf]{abntex2cite}
@@ -87,15 +88,17 @@ Os objetivos específicos são:
 \chapter{Método de pesquisa}\label{cap:metodo_de_pesquisa}
 
 Para atingir-se os objetivos específicos deste projeto serão utilizados os seguintes métodos:
-pesquisa bibliográfica em artigos e livros, tendo como base o livro \textit{Compilers: Principles, Techniques, and Tools (2Nd Edition)}~\cite{Aho:2006:CPT:1177220};
-análise de tendencias em linguagens de programação existentes, de suas documentações e de suas implementações;
-desenvolvimento de uma linguagem de programação;
-desenvolvimento de um compilador para a linguagem de programação projetada.
+\begin{alineas}
+  \item pesquisa bibliográfica em artigos e livros, tendo como base o livro \textit{Compilers: Principles, Techniques, and Tools (2Nd Edition)}~\cite{Aho:2006:CPT:1177220};
+  \item análise de tendencias em linguagens de programação existentes, de suas documentações e de suas implementações;
+  \item desenvolvimento de uma linguagem de programação;
+  \item desenvolvimento de um compilador para a linguagem de programação projetada.
+\end{alineas}
 
 \chapter{Planejamento}
 \section{Cronograma}\label{cap:cronograma}
 
-O cronograma é descrito pela tabela~\ref{tab:cronograma} abaixo.
+O cronograma é descrito pela tabela~\ref{tab:cronograma}.
 
 \begin{table}[h]
   \caption{Planejamento das etapas do trabalho de conclusão de curso}\label{tab:cronograma}
@@ -141,29 +144,42 @@ Não há custos envolvidos.
 
 \section{Recursos humanos}\label{cap:recursos_humanos}
 
-O projeto sera orientado pelo professor Rafael de Santiago e coorientado pelo aluno de mestrado Evandro Chagas Ribeiro da Costa.
+O projeto sera orientado pelo professor Rafael de Santiago e coorientado pelo aluno de mestrado Evandro Chagas Ribeiro da Costa como indicado pela tabela~\ref{tab:envolvidos}.
 
 \begin{table}[h]
-  \begin{center}
-  \begin{tabular}{@{}ll@{}}
-    \toprule
-    \multicolumn{1}{c}{Nome} & \multicolumn{1}{c}{Função} \\
-    \midrule
-    Rafael de Santiago & Responsável \\
-    Rafael de Santiago & Orientador \\
-    Evandro Chagas Ribeiro da Costa & Coorientador \\
-    \bottomrule
-  \end{tabular}
-  \end{center}
+  \caption{Envolvidos no projeto}\label{tab:envolvidos}
+    \centering
+      \begin{tabular}{@{}ll@{}}
+        \toprule
+        \multicolumn{1}{c}{Nome} & \multicolumn{1}{c}{Função} \\
+        \midrule
+        Rafael de Santiago & Responsável \\
+        Rafael de Santiago & Orientador \\
+        Evandro Chagas Ribeiro da Costa & Coorientador \\
+        \bottomrule
+      \end{tabular}
 \end{table}
 
 \section{Comunicação}\label{cap:comunicacao}
 
-Comunicação.
+A comunicação sera efetuada através de reuniões intermitentes com o orientador e o coorientador.
 
 \section{Riscos}\label{cap:riscos}
 
-Riscos.
+\begin{table}[h]
+  \caption{Riscos do projeto}\label{tab:riscos}
+    \resizebox{\textwidth}{!}{
+      \begin{tabular}{@{}lcccp{4cm}p{4cm}@{}}
+        \toprule
+        \multicolumn{1}{c}{Risco} & Probabilidade & Impacto & Prioridade & \multicolumn{1}{c}{Estratégia de resposta} & \multicolumn{1}{c}{Ações de prevenção} \\
+        \midrule
+        Perda de dados & baixa & alto & alta & Recuperação de versões anteriores & Utilizar serviços remotos de versionamento \\
+        Ficar doente   & alta  & alto & alta & Fazer tratamento médico necessário & Não abusar da saúde e praticar esportes \\
+        Computador estragar & baixa & alto & alta & Comprar um novo computador & Desligar em instabilidades de energia \\
+        \bottomrule
+      \end{tabular}
+    }
+\end{table}
 
 \postextual{}
 
