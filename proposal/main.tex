@@ -7,14 +7,18 @@
   brazil
 ]{abntex2}
 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 \usepackage{indentfirst}
 \usepackage{pdfpages}
 \usepackage[alf]{abntex2cite}
 \usepackage{booktabs}
 \usepackage{pifont}
 
+\setlength{\parindent}{1.3cm}
+
 \titulo{Implementação de um front end para IR LLVM}
-\tituloestrangeiro{Implementing a LLVM IR front end}
 
 \autor{Bernardo Ferrari Mendonça}
 \local{Brasil}
@@ -37,7 +41,9 @@ para a obtenção do Grau de Bacharel.}
 
 \begin{document}
 \pretextual{}
+\hypersetup{pageanchor=false}
 \imprimircapa{}
+\hypersetup{pageanchor=true}
 \imprimirfolhaderosto{}
 
 \begin{folhadeaprovacao}
@@ -59,7 +65,7 @@ Meu resumo.
 
 \textual{}
 
-\chapter{Introdução}\label{cap:introdução}
+\chapter{Introdução}\label{cap:introducao}
 
 Esta vai ser minha introdução\cite{dijkstra1968}!
 
@@ -84,10 +90,12 @@ Os objetivos específicos são:
 \chapter{Método de pesquisa}\label{cap:metodo_de_pesquisa}
 
 Para atingir-se os objetivos específicos deste projeto serão utilizados os seguintes métodos:
-pesquisa bibliográfica em artigos e livros, tendo como base o livro \textit{Compilers: Principles, Techniques, and Tools (2Nd Edition)}~\cite{Aho:2006:CPT:1177220}.
+pesquisa bibliográfica em artigos e livros, tendo como base o livro \textit{Compilers: Principles, Techniques, and Tools (2Nd Edition)}~\cite{Aho:2006:CPT:1177220};
+análise de tendencias em linguagens de programação existentes, suas documentações e suas implementações;
+desenvolvimento de uma linguagem de programação;
+desenvolvimento de um compilador para a linguagem de programação projetada.
 
-\chapter{Planejamento}
-\section{Cronograma}\label{cap:cronograma}
+\chapter{Cronograma}\label{cap:cronograma}
 
 O cronograma é descrito pela tabela~\ref{tab:cronograma} abaixo.
 
@@ -129,15 +137,21 @@ O cronograma é descrito pela tabela~\ref{tab:cronograma} abaixo.
   }
 \end{table}
 
-\section{Custos}\label{cap:custos}
+\chapter{Custos}\label{cap:custos}
 
 Não há custos envolvidos.
 
-\section{Recursos humanos}\label{cap:recursos_humanos}
+\chapter{Recursos humanos}\label{cap:recursos_humanos}
 
-\section{Comunicação}\label{cap:comunicacao}
+Recursos humanos.
 
-\section{Riscos}\label{cap:riscos}
+\chapter{Comunicação}\label{cap:comunicacao}
+
+Comunicação.
+
+\chapter{Riscos}\label{cap:riscos}
+
+Riscos.
 
 \postextual{}
 
