@@ -16,7 +16,7 @@
 
 \setlength{\parindent}{1.3cm}
 
-\titulo{Implementação de um front end para IR LLVM}
+\titulo{Implementação de um front end para \textit{LLVM intermediate representation}}
 
 \autor{Bernardo Ferrari Mendonça}
 \local{Brasil}
@@ -49,11 +49,20 @@ para a obtenção do Grau de Bacharel.}
 \end{folhadeaprovacao}
 
 \begin{resumo}
-Meu resumo.
+Nos dias atuais todos os programas de computadores são descritos em alguma linguagem de programação.
+Compiladores são os programas de computadores que fazem o papel de tradutor entre as linguagens de programação e as linguagens de maquina.
+Eles recebem como entrada um texto escrito em uma linguagem fonte, chamado de programa fonte, e produzem como saída um texto escrito em uma linguagem de maquina alvo, chamado de programa alvo.
+
+O processo de tradução executado por um compilador pode ser separado em duas grandes etapas: a etapa de analise e a etapa de síntese.
+Entre elas existe uma linguagem intermediaria.
+O uso de uma linguagem intermediaria é especialmente vantajoso pois, um compilador para a linguagem $i$ e maquina $j$ pode ser construído combinando um \textit{front end} para $i$ e um \textit{back end} para $j$.
+
+O projeto LLVM é uma biblioteca de funcionalidades para otimização de código intermediário e geração de código alvo.
+Estas funcionalidades são construídas ao redor de uma linguagem intermediaria chamada \textit{LLVM intermediate representation}, ou LLVM IR\@.
 
 \vspace{\onelineskip}
 \noindent
-\textbf{Palavras-chave}: minhas\@. palavras\@. chave.
+\textbf{Palavras-chave}: linguagem de programação\@. representação intermediaria de código\@. compilador\@. LLVM\@. LLVM IR\@.
 
 \end{resumo}
 
@@ -69,7 +78,7 @@ Linguagens de programação são notações para descrever computações para pe
 Nos dias atuais todos os programas de computadores são descritos em alguma linguagem de programação
 pois facilitam a comunicação das suas computações entre as pessoas que os desenvolvem.
 Porém, antes que estas computações possam ser executadas por um computador,
-elas necessitam ser traduzidas para uma linguagem passível de ser executada por um computador.
+elas necessitam ser traduzidas para uma linguagem de maquina passível de ser executada por um computador.
 
 Compiladores são os programas de computadores que fazem o papel de tradutor entre as linguagens de programação e as linguagens de maquina.
 Eles recebem como entrada um texto escrito em uma linguagem fonte, chamado de programa fonte, e produzem como saída um texto escrito em uma linguagem de maquina alvo, chamado de programa alvo.
@@ -80,15 +89,18 @@ Para que consigam realizar essa tradução, compiladores utilizam de modelos for
 O processo de tradução executado por um compilador pode ser separado em duas grandes etapas: a etapa de analise e a etapa de síntese.
 Essas etapas podem ser mais uma vez subdivididas.
 
-A etapa de analise pode ser subdividida em: analise léxica; analise sintática; analise semântica; e geração de código intermediário.
+A etapa de analise, ou \textit{front end} de um compilador, pode ser subdividida em: analise léxica; analise sintática; analise semântica; e geração de código intermediário.
 Esta etapa é explorada na seção~\ref{cap:introducao:sec:o_front_end}.
 
-Além disso, a etapa de síntese pode ser subdividida em: otimização de código independente de maquina; geração de código alvo; e otimização de código dependente de maquina.
+Além disso, a etapa de síntese, ou \textit{back end} de um compilador, pode ser subdividida em: otimização de código independente de maquina; geração de código alvo; e otimização de código dependente de maquina.
 Esta etapa é explorada na seção~\ref{cap:introducao:sec:o_back_end}.
+
+O uso de uma linguagem intermediaria é especialmente vantajoso pois, um compilador para a linguagem $i$ e maquina $j$ pode ser construído combinando um \textit{front end} para $i$ e um \textit{back end} para $j$.
+Além disso, se desejarmos implementar $n$ linguagens de programação para $m$ maquinas, evitamos a construção de $n \times m$ compiladores construindo $n$ \textit{front ends} e $m$ \textit{back ends}.
 
 \subsection{O \textit{front end}}\label{cap:introducao:sec:o_front_end}
 
-A etapa se analise é usualmente referida por \textit{front end} de um compilador e suas sub etapas são descritas em sequencia.
+A sub etapas de um \textit{front end} são descritas em sequencia.
 
 A analise léxica consiste em identificar os lexemas presentes no código fonte e produzir \textit{tokens} para cada um dos lexemas encontrados.
 Estruturas formais como expressões regulares e autómatos finitos, juntamente com um algorítimo de conversão~\cite{lesk1975lex}, podem ser utilizadas para geração automática de analisadores léxicos.
@@ -99,13 +111,13 @@ Estruturas formais como linguagens livre de contexto e maquinas de pilha, juntam
 A analise semântica consiste em analisar a arvore sintática produzida pelo analisador sintático e produzir código intermediário.
 Estruturas formais como \textit{Syntax Directed Definitions} (SDD), juntamente a uma \textit{Syntax Directed Translation} (SDT), podem ser utilizadas para geração de código intermediário~\cite{Aho:2006:CPT:1177220}.
 
-\subsection{O \textit{back end} e a linguagem intermediaria llvm}\label{cap:introducao:sec:o_back_end}
+\subsection{O \textit{back end} e a linguagem intermediaria LLVM}\label{cap:introducao:sec:o_back_end}
 
-A analise léxica \dots
+O \textit{back end} de um compilador realiza a etapa de síntese e é uma area muito importante de compiladores.
+É o \textit{back end} que realiza as otimizações necessárias para que os programas de computador sejam eficientes.
 
-A analise sintática \dots
-
-A analise semântica \dots
+O projeto LLVM~\cite{lattner2004llvm} é uma biblioteca de funcionalidades para otimização de código intermediário e geração de código alvo.
+Estas funcionalidades são construídas ao redor de uma linguagem intermediaria chamada \textit{LLVM intermediate representation}, ou LLVM IR\@.
 
 \chapter{Objetivos}\label{cap:objetivos}
 
@@ -136,6 +148,7 @@ Para atingir-se os objetivos específicos deste projeto serão utilizados os seg
 \end{alineas}
 
 \chapter{Planejamento}
+
 \section{Cronograma}\label{cap:cronograma}
 
 O cronograma é descrito pela tabela~\ref{tab:cronograma}.
