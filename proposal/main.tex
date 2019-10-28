@@ -90,11 +90,14 @@ Esta etapa é explorada na seção~\ref{cap:introducao:sec:o_back_end}.
 
 A etapa se analise é usualmente referida por \textit{front end} de um compilador e suas sub etapas são descritas em sequencia.
 
-A analise léxica \dots
+A analise léxica consiste em identificar os lexemas presentes no código fonte e produzir \textit{tokens} para cada um dos lexemas encontrados.
+Estruturas formais como expressões regulares e autómatos finitos, juntamente com um algorítimo de conversão~\cite{lesk1975lex}, podem ser utilizadas para geração automática de analisadores léxicos.
 
-A analise sintática \dots
+A analise sintática consiste em analisar os \textit{tokens} produzidos pelo analisador léxico de produzir uma arvore sintática.
+Estruturas formais como linguagens livre de contexto e maquinas de pilha, juntamente com um algorítimo de \textit{parsing}~\cite{knuth1965translation}, podem ser utilizadas para geração automática de analisadores sintáticos.
 
-A analise semântica \dots
+A analise semântica consiste em analisar a arvore sintática produzida pelo analisador sintático e produzir código intermediário.
+Estruturas formais como \textit{Syntax Directed Definitions} (SDD), juntamente a uma \textit{Syntax Directed Translation} (SDT), podem ser utilizadas para geração de código intermediário~\cite{Aho:2006:CPT:1177220}.
 
 \subsection{O \textit{back end} e a linguagem intermediaria llvm}\label{cap:introducao:sec:o_back_end}
 
