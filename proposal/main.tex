@@ -16,7 +16,7 @@
 
 \setlength{\parindent}{1.3cm}
 
-\titulo{Implementação de um front end para \textit{LLVM intermediate representation}}
+\titulo{Implementação de um front end para representação intermediária \textit{LLVM}}
 
 \autor{Bernardo Ferrari Mendonça}
 \local{Brasil}
@@ -49,20 +49,19 @@ para a obtenção do Grau de Bacharel.}
 \end{folhadeaprovacao}
 
 \begin{resumo}
-Nos dias atuais todos os programas de computadores são descritos em alguma linguagem de programação.
 Compiladores são os programas de computadores que fazem o papel de tradutor entre as linguagens de programação e as linguagens de maquina.
 Eles recebem como entrada um texto escrito em uma linguagem fonte, chamado de programa fonte, e produzem como saída um texto escrito em uma linguagem de maquina alvo, chamado de programa alvo.
-
 O processo de tradução executado por um compilador pode ser separado em duas grandes etapas: a etapa de analise e a etapa de síntese.
-Entre elas existe uma linguagem intermediaria.
-O uso de uma linguagem intermediaria é especialmente vantajoso pois, um compilador para a linguagem $i$ e maquina $j$ pode ser construído combinando um \textit{front end} para $i$ e um \textit{back end} para $j$.
-
+Entre elas existe uma linguagem intermediária.
+O uso de uma linguagem intermediária é especialmente vantajoso pois, um compilador para a linguagem $i$ e maquina $j$ pode ser construído combinando um \textit{front end} para $i$ e um \textit{back end} para $j$.
 O projeto LLVM é uma biblioteca de funcionalidades para otimização de código intermediário e geração de código alvo.
-Estas funcionalidades são construídas ao redor de uma linguagem intermediaria chamada \textit{LLVM intermediate representation}, ou LLVM IR\@.
+Estas funcionalidades são construídas ao redor de uma linguagem intermediária chamada \textit{LLVM intermediate representation}, ou LLVM IR\@.
+O objetivo do trabalho consiste em propor o projeto de uma linguagem de programação similar a linguagem C e a confecção de seu compilador utilizando o ecossistema de ferramentas LLVM\@.
+É esperada que a ferramenta consiga fazer a tradução de código fonte para código de maquina alvo e que o código de maquina alvo seja tão eficiente quanto ao gerado pela linguagem de programação C\@.
 
 \vspace{\onelineskip}
 \noindent
-\textbf{Palavras-chave}: linguagem de programação\@. representação intermediaria de código\@. compilador\@. LLVM\@. LLVM IR\@.
+\textbf{Palavras-chave}: linguagem de programação\@. representação intermediária de código\@. compilador\@. LLVM\@. LLVM IR\@.
 
 \end{resumo}
 
@@ -84,23 +83,14 @@ Compiladores são os programas de computadores que fazem o papel de tradutor ent
 Eles recebem como entrada um texto escrito em uma linguagem fonte, chamado de programa fonte, e produzem como saída um texto escrito em uma linguagem de maquina alvo, chamado de programa alvo.
 Para que consigam realizar essa tradução, compiladores utilizam de modelos formais da teoria da computação e de teoria de linguagens formais.
 
-\section{O processo de tradução}\label{cap:introducao:sec:o_processo_de_traducao}
-
 O processo de tradução executado por um compilador pode ser separado em duas grandes etapas: a etapa de analise e a etapa de síntese.
 Essas etapas podem ser mais uma vez subdivididas.
 
 A etapa de analise, ou \textit{front end} de um compilador, pode ser subdividida em: analise léxica; analise sintática; analise semântica; e geração de código intermediário.
-Esta etapa é explorada na seção~\ref{cap:introducao:sec:o_front_end}.
-
 Além disso, a etapa de síntese, ou \textit{back end} de um compilador, pode ser subdividida em: otimização de código independente de maquina; geração de código alvo; e otimização de código dependente de maquina.
-Esta etapa é explorada na seção~\ref{cap:introducao:sec:o_back_end}.
 
-O uso de uma linguagem intermediaria é especialmente vantajoso pois, um compilador para a linguagem $i$ e maquina $j$ pode ser construído combinando um \textit{front end} para $i$ e um \textit{back end} para $j$.
-Além disso, se desejarmos implementar $n$ linguagens de programação para $m$ maquinas, evitamos a construção de $n \times m$ compiladores construindo $n$ \textit{front ends} e $m$ \textit{back ends}.
-
-\subsection{O \textit{front end}}\label{cap:introducao:sec:o_front_end}
-
-A sub etapas de um \textit{front end} são descritas em sequencia.
+O uso de uma linguagem intermediária é especialmente vantajoso pois, um compilador para a linguagem $i$ e maquina $j$ pode ser construído combinando um \textit{front end} para $i$ e um \textit{back end} para $j$.
+Assim, se desejarmos implementar $n$ linguagens de programação para $m$ maquinas, evitamos a construção de $n \times m$ compiladores construindo $n$ \textit{front ends} e $m$ \textit{back ends}.
 
 A analise léxica consiste em identificar os lexemas presentes no código fonte e produzir \textit{tokens} para cada um dos lexemas encontrados.
 Estruturas formais como expressões regulares e autómatos finitos, juntamente com um algorítimo de conversão~\cite{lesk1975lex}, podem ser utilizadas para geração automática de analisadores léxicos.
@@ -111,40 +101,45 @@ Estruturas formais como linguagens livre de contexto e maquinas de pilha, juntam
 A analise semântica consiste em analisar a arvore sintática produzida pelo analisador sintático e produzir código intermediário.
 Estruturas formais como \textit{Syntax Directed Definitions} (SDD), juntamente a uma \textit{Syntax Directed Translation} (SDT), podem ser utilizadas para geração de código intermediário~\cite{Aho:2006:CPT:1177220}.
 
-\subsection{O \textit{back end} e a linguagem intermediaria LLVM}\label{cap:introducao:sec:o_back_end}
-
 O \textit{back end} de um compilador realiza a etapa de síntese e é uma area muito importante de compiladores.
 É o \textit{back end} que realiza as otimizações necessárias para que os programas de computador sejam eficientes.
 
 O projeto LLVM~\cite{lattner2004llvm} é uma biblioteca de funcionalidades para otimização de código intermediário e geração de código alvo.
-Estas funcionalidades são construídas ao redor de uma linguagem intermediaria chamada \textit{LLVM intermediate representation}, ou LLVM IR\@.
+Estas funcionalidades são construídas ao redor de uma linguagem intermediária chamada \textit{LLVM intermediate representation}, ou LLVM IR\@.
+
+Este trabalho tem como objetivo projetar uma linguagem de programação similar a C e desenvolver um \textit{front end} para a linguagem intermediária LLVM\@.
+O mesmo vem a contribuir com a dissertação de mestrado do Evandro Chagas no PPGCC (Programa de Pós-Graduação em Ciência da Computação) UFSC, no qual há a especificação de uma linguagem de programação quântica.
+Vale ressaltar que o escopo da presente proposta constitui da parte clássica~\footnote{O termo clássico é usado em contraponto ao termo quântico, ou seja, clássico é tudo que não é quântico.} da especificação dessa linguagem de programação quântica.
 
 \chapter{Objetivos}\label{cap:objetivos}
 
-O principal objetivo deste trabalho consiste em projetar, implementar e avaliar uma linguagem de programação similar a linguagem de programação c.
-Esta implementação de linguagem de programação deve fazer uso do ecossistema llvm, incluindo suas ferramentas para geração de linguagem de representação intermediaria, para otimização de código e para geração de código objeto executável.
+O principal objetivo do trabalho proposto consiste em desenvolver uma linguagem de programação similar a linguagem C, usando o ecossistema LLVM para geração de linguagem intermediária.
 
 \section{Objetivos específicos}
 
 Os objetivos específicos são:
 \begin{alineas}
-  \item projetar uma linguagem de programação similar a c;
+  \item projetar uma linguagem de programação similar a C\@;
   \item implementar um analisador léxico, um analisador sintático e uma tradução dirigida a sintaxe;
-  \item fazer um estudo sobre a linguagem intermediaria llvm;
-  \item implementar uma ferramenta para controlar a otimização da linguagem intermediaria llvm. Além de controlar a tradução da mesma para código objeto;
-  \item fazer um estudo sobre o processo de ligação de código;
+  \item implementar uma ferramenta para controlar a otimização da linguagem intermediária LLVM\@. Além de controlar a tradução da mesma para código objeto;
   \item integrar a ferramenta ao processo de ligação de código do ambiente GNU/Linux;
-  \item avaliar as decisões de projeto da linguagem de programação projetada quanto a linguagem c.
+  \item avaliar as decisões de projeto da linguagem de programação projetada quanto a linguagem C.
 \end{alineas}
 
 \chapter{Método de pesquisa}\label{cap:metodo_de_pesquisa}
 
-Para atingir-se os objetivos específicos deste projeto serão utilizados os seguintes métodos:
+Para atingir-se os objetivos específicos deste projeto serão seguidos os seguintes passos:
 \begin{alineas}
-  \item pesquisa bibliográfica em artigos e livros, tendo como base o livro \textit{Compilers: Principles, Techniques, and Tools (2Nd Edition)}~\cite{Aho:2006:CPT:1177220};
-  \item análise de tendencias em linguagens de programação existentes, de suas documentações e de suas implementações;
-  \item desenvolvimento de uma linguagem de programação;
-  \item desenvolvimento de um compilador para a linguagem de programação projetada.
+  \item fundamentação teórica e estudos de artigos, livros, tendo como base o livro \textit{Compilers: Principles, Techniques, and Tools (2Nd Edition)}~\cite{Aho:2006:CPT:1177220}.
+    Além de análise de tendencias em linguagens de programação existentes, de suas documentações e de suas implementações.
+    Esta etapa esta prevista pelo cronograma na tabela~\ref{tab:cronograma} em \textit{Estudo da fundamentação teórica};
+  \item projeto de uma linguagem de programação similar a C\@ e implementação de um compilador para a mesma.
+    Esta etapa esta prevista pelo cronograma na tabela~\ref{tab:cronograma} em \textit{Desenvolvimento da solução};
+  \item analise da linguagem de programação projetada e comparação com linguagens já existentes;
+    Esta etapa esta prevista pelo cronograma na tabela~\ref{tab:cronograma} em \textit{Desenvolvimento da solução};
+  \item desenvolvimento iterativo da monografia do trabalho de conclusão de curso.
+    Incluindo entrega de um relatório parcial em Projeto I, uma entrega final e uma defesa publica.
+    Esta etapa esta prevista pelo cronograma na tabela~\ref{tab:cronograma} em \textit{Desenvolvimento do relatório de Projeto I} e \textit{Desenvolvimento do rascunho do TCC}.
 \end{alineas}
 
 \chapter{Planejamento}
@@ -222,13 +217,13 @@ A comunicação sera efetuada através de reuniões intermitentes com o orientad
 \begin{table}[h]
   \caption{Riscos do projeto}\label{tab:riscos}
     \resizebox{\textwidth}{!}{
-      \begin{tabular}{@{}lcccp{4cm}p{4cm}@{}}
+      \begin{tabular}{@{}p{4cm}cccp{4cm}p{4cm}@{}}
         \toprule
         \multicolumn{1}{c}{Risco} & Probabilidade & Impacto & Prioridade & \multicolumn{1}{c}{Estratégia de resposta} & \multicolumn{1}{c}{Ações de prevenção} \\
         \midrule
         Perda de dados & baixa & alto & alta & Recuperação de versões anteriores & Utilizar serviços remotos de versionamento \\
-        Ficar doente   & alta  & alto & alta & Fazer tratamento médico necessário & Não abusar da saúde e praticar esportes \\
-        Computador estragar & baixa & alto & alta & Comprar um novo computador & Desligar em instabilidades de energia \\
+        Negligenciar fator importante na especificação dos analisadores que é necessário para linguagem
+        & médio & alto & alta & Refatoração da especificação dos analisadores & Analise continua das especificações utilizadas por outras linguagens \\
         \bottomrule
       \end{tabular}
     }
